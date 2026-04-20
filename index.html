@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECO-101 — Get Your First Ecommerce Sale in Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── BRAND TOKENS — pure black & white ─────────── */
+    :root {
+      --black:      #000000;
+      --white:      #ffffff;
+      --off-white:  #f5f5f0;
+      --gray-100:   #eeeeee;
+      --gray-200:   #cccccc;
+      --gray-400:   #888888;
+      --gray-600:   #444444;
+      --gray-800:   #1a1a1a;
+      --gray-900:   #111111;
+      --card-bg:    #0d0d0d;
+      --card-alt:   #141414;
+      --border:     rgba(255,255,255,0.08);
+      --border-mid: rgba(255,255,255,0.15);
+      --border-hi:  rgba(255,255,255,0.35);
+      /* typography */
+      --ff-head:  'Barlow Condensed', sans-serif;
+      --ff-body:  'Barlow', sans-serif;
+      --ff-mono:  'JetBrains Mono', monospace;
+      /* spacing */
+      --r: 10px;
+      --tr: 0.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── GRAIN TEXTURE ──────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9998; opacity: 0.5;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 100px 0; }
+    .section-alt{ background: var(--gray-900); }
+
+    /* ─── TAGS ───────────────────────────────────────── */
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--ff-mono); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gray-400); border: 1px solid var(--border-mid);
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .tag-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--white); display: inline-block;
+    }
+
+    /* ─── HEADINGS ───────────────────────────────────── */
+    .h1 {
+      font-family: var(--ff-head); font-weight: 900;
+      font-size: clamp(58px, 9vw, 110px);
+      line-height: 0.88; letter-spacing: -0.01em;
+    }
+    .h2 {
+      font-family: var(--ff-head); font-weight: 900;
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 0.9; letter-spacing: -0.01em;
+    }
+    .accent { color: var(--white); }
+    .inv    { color: var(--black); }
+
+    /* ─── BUTTONS ────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 32px; font-family: var(--ff-body); font-size: 14px;
+      font-weight: 700; letter-spacing: 0.03em; border-radius: var(--r);
+      border: none; cursor: pointer; text-decoration: none;
+      transition: var(--tr); white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--white); color: var(--black);
+    }
+    .btn-primary:hover { background: var(--off-white); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(255,255,255,0.15); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1px solid var(--border-mid);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+    .btn-wa {
+      background: #25D366; color: #fff;
+      border: none; gap: 10px;
+    }
+    .btn-wa:hover { background: #20bd5a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(37,211,102,0.25); }
+    .btn-lg { padding: 18px 44px; font-size: 16px; }
+    .btn-xl { padding: 20px 52px; font-size: 18px; letter-spacing: 0.04em; }
+
+    /* ─── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 20px 0; transition: var(--tr);
+    }
+    nav.scrolled {
+      background: rgba(0,0,0,0.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 32px; filter: invert(0); }
+    /* Fallback text logo if image not found */
+    .nav-logo-text {
+      font-family: var(--ff-head); font-weight: 900; font-size: 26px;
+      letter-spacing: 0.05em; color: var(--white);
+    }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 600; color: var(--gray-400);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--tr);
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .nav-phone {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--ff-mono); font-size: 12px; font-weight: 700;
+      color: var(--gray-200); letter-spacing: 0.06em;
+    }
+    .nav-phone:hover { color: var(--white); }
+
+    @media(max-width:768px) {
+      .nav-links { display: none; }
+      .nav-phone  { display: none; }
+    }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 140px 0 80px; position: relative; overflow: hidden;
+    }
+    /* Geometric grid background */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 480px;
+      gap: 60px; align-items: center;
+    }
+    .hero-live {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray-400); margin-bottom: 28px;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--white);
+      box-shadow: 0 0 8px rgba(255,255,255,0.6);
+      animation: livepulse 2s infinite;
+    }
+    @keyframes livepulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero-title { margin-bottom: 24px; }
+    .hero-title .line-white { color: var(--white); display: block; }
+    .hero-title .line-outline {
+      -webkit-text-stroke: 2px var(--gray-600);
+      color: transparent; display: block;
+    }
+    .hero-sub {
+      font-size: 18px; color: var(--gray-400); max-width: 460px;
+      margin-bottom: 40px; line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+
+    .hero-proof { display: flex; align-items: center; gap: 14px; }
+    .avatars { display: flex; }
+    .avatars span {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid var(--black);
+      background: var(--gray-800); display: flex; align-items: center;
+      justify-content: center; font-size: 14px;
+      margin-left: -8px;
+    }
+    .avatars span:first-child { margin-left: 0; }
+    .proof-text { font-size: 13px; color: var(--gray-400); }
+    .proof-text strong { color: var(--white); }
+
+    /* Hero Stats Card */
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-mid);
+      border-radius: 20px; padding: 32px;
+      position: relative; overflow: hidden;
+    }
+    .hero-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    .stats-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .stat-box {
+      background: var(--card-alt); padding: 22px;
+      border: 1px solid var(--border);
+    }
+    .stat-box:first-child  { border-radius: 10px 0 0 0; }
+    .stat-box:nth-child(2) { border-radius: 0 10px 0 0; }
+    .stat-box:nth-child(3) { border-radius: 0 0 0 10px; }
+    .stat-box:last-child   { border-radius: 0 0 10px 0; }
+    .stat-num {
+      font-family: var(--ff-head); font-size: 52px; font-weight: 900;
+      color: var(--white); line-height: 1;
+    }
+    .stat-lbl { font-size: 12px; color: var(--gray-400); font-weight: 600; margin-top: 4px; }
+
+    .hero-badge {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border-mid);
+      border-radius: var(--r); padding: 16px 18px; margin-top: 16px;
+    }
+    .badge-icon { font-size: 24px; flex-shrink: 0; }
+    .badge-text { font-size: 13px; color: var(--gray-200); line-height: 1.5; }
+    .badge-text strong { color: var(--white); display: block; }
+
+    @media(max-width:900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card  { display: none; }
+    }
+
+    /* ─── MARQUEE ─────────────────────────────────────── */
+    .marquee-strip {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--gray-900); padding: 13px 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      animation: scroll 30s linear infinite;
+    }
+    .m-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 36px; font-family: var(--ff-mono); font-size: 11px;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray-600); white-space: nowrap;
+    }
+    .m-item .bul { color: var(--white); font-size: 8px; }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── PROBLEM ─────────────────────────────────────── */
+    .prob-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      margin-top: 60px;
+    }
+    .prob-cell {
+      background: var(--card-bg); padding: 36px 32px;
+      position: relative; transition: var(--tr);
+    }
+    .prob-cell:hover { background: var(--card-alt); }
+    .prob-cell::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--white); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .prob-cell:hover::after { transform: scaleX(1); }
+    .prob-x { font-size: 22px; color: var(--gray-600); margin-bottom: 20px; }
+    .prob-icon { font-size: 36px; margin-bottom: 18px; display: block; }
+    .prob-cell h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .prob-cell p  { font-size: 14px; color: var(--gray-400); line-height: 1.7; }
+    @media(max-width:768px) { .prob-grid { grid-template-columns: 1fr; } }
+
+    /* ─── SOLUTION ────────────────────────────────────── */
+    .sol-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; margin-top: 60px;
+    }
+    .sol-feat-list { display: flex; flex-direction: column; gap: 28px; }
+    .sol-item { display: flex; gap: 16px; align-items: flex-start; }
+    .sol-num {
+      font-family: var(--ff-head); font-size: 40px; font-weight: 900;
+      color: var(--gray-800); line-height: 1; flex-shrink: 0; width: 44px;
+    }
+    .sol-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+    .sol-item p  { font-size: 14px; color: var(--gray-400); line-height: 1.65; }
+
+    .sol-visual {
+      background: var(--card-bg); border: 1px solid var(--border-mid);
+      border-radius: 20px; padding: 44px 36px; text-align: center;
+    }
+    .sol-big {
+      font-family: var(--ff-head); font-size: 80px; font-weight: 900;
+      color: var(--white); line-height: 1; margin-bottom: 8px;
+    }
+    .sol-sub { font-size: 14px; color: var(--gray-400); margin-bottom: 36px; }
+    .bar-group { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+    .bar-row { display: flex; align-items: center; gap: 12px; }
+    .bar-label { font-size: 11px; color: var(--gray-400); font-family: var(--ff-mono); width: 56px; text-align: right; }
+    .bar-track { flex: 1; height: 6px; background: var(--gray-800); border-radius: 100px; overflow: hidden; }
+    .bar-fill  { height: 100%; background: var(--white); border-radius: 100px; animation: grow 1.2s ease forwards; }
+    @keyframes grow { from { width: 0; } }
+    .bar-pct { font-size: 11px; color: var(--white); font-family: var(--ff-mono); width: 32px; }
+    @media(max-width:768px) { .sol-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ─── HOW IT WORKS ────────────────────────────────── */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; margin-top: 60px;
+    }
+    .step {
+      background: var(--card-bg); padding: 32px 24px; text-align: center;
+      transition: var(--tr); position: relative;
+    }
+    .step:hover { background: var(--white); color: var(--black); }
+    .step-n {
+      font-family: var(--ff-head); font-size: 56px; font-weight: 900;
+      color: var(--gray-800); line-height: 1; margin-bottom: 16px;
+      transition: var(--tr);
+    }
+    .step:hover .step-n { color: rgba(0,0,0,0.15); }
+    .step h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .step p  { font-size: 13px; color: var(--gray-400); line-height: 1.6; transition: color var(--tr); }
+    .step:hover p { color: rgba(0,0,0,0.6); }
+    @media(max-width:900px){ .steps-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:480px){ .steps-grid { grid-template-columns: 1fr; } }
+
+    /* ─── FEATURES ────────────────────────────────────── */
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 16px; margin-top: 60px;
+    }
+    .feat-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px 28px; transition: var(--tr);
+      position: relative; overflow: hidden;
+    }
+    .feat-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-hi), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .feat-card:hover { border-color: var(--border-hi); transform: translateY(-4px); }
+    .feat-card:hover::before { opacity: 1; }
+    .feat-icon { font-size: 32px; margin-bottom: 16px; }
+    .feat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .feat-card p  { font-size: 13px; color: var(--gray-400); line-height: 1.7; }
+    @media(max-width:900px){ .feat-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:560px){ .feat-grid { grid-template-columns: 1fr; } }
+
+    /* ─── 7-DAY CHALLENGE ─────────────────────────────── */
+    .challenge-grid {
+      display: grid; grid-template-columns: 340px 1fr;
+      gap: 56px; align-items: start; margin-top: 60px;
+    }
+    .chal-info { position: sticky; top: 100px; }
+    .chal-info h3 {
+      font-family: var(--ff-head); font-size: 52px; font-weight: 900;
+      line-height: 0.9; margin-bottom: 20px;
+    }
+    .chal-info p { font-size: 15px; color: var(--gray-400); line-height: 1.7; margin-bottom: 28px; }
+    .days-stack { display: flex; flex-direction: column; gap: 10px; }
+    .day-card {
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 16px; align-items: center;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 16px 20px;
+      transition: var(--tr);
+    }
+    .day-card:hover { border-color: var(--border-hi); background: var(--card-alt); }
+    .day-tag {
+      font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+      color: var(--gray-400); letter-spacing: 0.08em;
+    }
+    .day-title { font-size: 14px; font-weight: 700; }
+    .day-desc  { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+    @media(max-width:768px){ .challenge-grid { grid-template-columns: 1fr; } .chal-info { position: static; } }
+
+    /* ─── TESTIMONIALS ────────────────────────────────── */
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 16px; margin-top: 60px;
+    }
+    .testi-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px; transition: var(--tr);
+    }
+    .testi-card:hover { border-color: var(--border-mid); }
+    .stars { font-size: 13px; letter-spacing: 3px; margin-bottom: 16px; color: var(--white); }
+    .testi-text {
+      font-size: 14px; color: var(--gray-200); line-height: 1.75;
+      margin-bottom: 20px; font-style: italic;
+    }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-av {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gray-800); border: 1px solid var(--border-mid);
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .testi-name   { font-size: 14px; font-weight: 700; }
+    .testi-result { font-size: 11px; color: var(--gray-400); font-family: var(--ff-mono); margin-top: 2px; }
+    @media(max-width:900px){ .testi-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:560px){ .testi-grid { grid-template-columns: 1fr; } }
+
+    /* ─── PRICING ─────────────────────────────────────── */
+    .pricing-header { text-align: center; margin-bottom: 16px; }
+    .pricing-sub    { font-size: 17px; color: var(--gray-400); margin-top: 16px; }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px; margin-top: 56px; align-items: start;
+    }
+
+    /* Base card */
+    .p-card {
+      background: var(--card-bg); border: 1px solid var(--border-mid);
+      border-radius: 20px; padding: 36px 32px;
+      position: relative; overflow: hidden; transition: var(--tr);
+    }
+    .p-card:hover { transform: translateY(-4px); }
+
+    /* POPULAR card — inverted */
+    .p-card.popular {
+      background: var(--white); color: var(--black);
+      border-color: var(--white);
+      transform: scale(1.04); box-shadow: 0 20px 60px rgba(255,255,255,0.12);
+    }
+    .p-card.popular:hover { transform: scale(1.04) translateY(-4px); }
+
+    .pop-badge {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--black); color: var(--white);
+      font-family: var(--ff-mono); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.14em; padding: 5px 16px; border-radius: 0 0 10px 10px;
+    }
+    .p-card.popular .pop-badge { background: var(--black); }
+
+    .p-name {
+      font-family: var(--ff-mono); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gray-400); margin-bottom: 20px;
+    }
+    .p-card.popular .p-name { color: var(--gray-600); }
+
+    .p-price {
+      font-family: var(--ff-head); font-size: 72px; font-weight: 900;
+      line-height: 1; display: flex; align-items: flex-start; gap: 4px;
+    }
+    .p-price sup { font-size: 28px; margin-top: 12px; }
+    .p-period {
+      font-size: 13px; color: var(--gray-400); margin: 8px 0 28px;
+    }
+    .p-card.popular .p-period { color: var(--gray-600); }
+
+    .p-features { list-style: none; margin-bottom: 32px; }
+    .p-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 0; font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .p-card.popular .p-features li { border-bottom-color: rgba(0,0,0,0.08); }
+    .p-features li:last-child { border-bottom: none; }
+    .p-check { color: var(--white); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .p-card.popular .p-check { color: var(--black); }
+
+    .p-btn {
+      width: 100%; padding: 16px; text-align: center;
+      font-family: var(--ff-body); font-size: 15px; font-weight: 700;
+      border-radius: var(--r); cursor: pointer; transition: var(--tr);
+      border: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .p-btn-default {
+      background: transparent; color: var(--white);
+      border: 1px solid var(--border-mid);
+    }
+    .p-btn-default:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+    .p-btn-popular {
+      background: var(--black); color: var(--white);
+    }
+    .p-btn-popular:hover { background: var(--gray-900); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+    .p-guarantee {
+      text-align: center; font-size: 12px; color: var(--gray-600);
+      margin-top: 32px;
+    }
+    .p-urgency {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 12px; font-size: 12px; color: #ff8888;
+      font-family: var(--ff-mono); letter-spacing: 0.04em;
+    }
+
+    @media(max-width:900px){
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .p-card.popular { transform: none; }
+      .p-card.popular:hover { transform: translateY(-4px); }
+    }
+
+    /* ─── FAQ ─────────────────────────────────────────── */
+    .faq-wrap { max-width: 720px; margin: 60px auto 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      padding: 22px 0; display: flex; justify-content: space-between;
+      align-items: center; color: var(--white); font-size: 16px;
+      font-weight: 600; cursor: pointer; text-align: left;
+      font-family: var(--ff-body); transition: color var(--tr);
+      gap: 16px;
+    }
+    .faq-q:hover { color: var(--gray-200); }
+    .faq-arrow { font-size: 20px; color: var(--gray-600); transition: transform var(--tr), color var(--tr); flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); color: var(--white); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-a { max-height: 220px; }
+    .faq-a p { padding: 0 0 24px; font-size: 15px; color: var(--gray-400); line-height: 1.75; }
+
+    /* ─── FINAL CTA ───────────────────────────────────── */
+    #final-cta {
+      padding: 120px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    #final-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    }
+    .cta-h { margin-bottom: 24px; }
+    .cta-sub { font-size: 18px; color: var(--gray-400); max-width: 480px; margin: 0 auto 44px; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); padding: 40px 0;
+    }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand img { height: 24px; }
+    .footer-copy { font-size: 12px; color: var(--gray-600); }
+    .footer-phone {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--ff-mono); font-size: 12px; font-weight: 700;
+      color: var(--gray-400);
+    }
+
+    /* ─── MODAL (Contact / WhatsApp) ──────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px); z-index: 999;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--gray-900); border: 1px solid var(--border-mid);
+      border-radius: 20px; padding: 48px 40px; width: 100%; max-width: 460px;
+      position: relative; animation: mIn 0.3s ease;
+    }
+    @keyframes mIn { from { opacity:0; transform: scale(0.96) translateY(12px); } }
+    .modal-close {
+      position: absolute; top: 18px; right: 22px;
+      background: none; border: none; color: var(--gray-400);
+      font-size: 22px; cursor: pointer; transition: color var(--tr);
+    }
+    .modal-close:hover { color: var(--white); }
+    .modal-logo { margin-bottom: 24px; }
+    .modal-logo img { height: 28px; }
+    .modal-title {
+      font-family: var(--ff-head); font-size: 40px; font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .modal-sub { font-size: 14px; color: var(--gray-400); margin-bottom: 32px; }
+
+    /* Plan selector inside modal */
+    .plan-select { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .plan-opt {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-radius: var(--r); border: 1px solid var(--border);
+      cursor: pointer; transition: var(--tr);
+    }
+    .plan-opt:hover { border-color: var(--border-hi); }
+    .plan-opt.selected { border-color: var(--white); background: rgba(255,255,255,0.05); }
+    .plan-opt.popular-opt { border-color: var(--white); background: var(--white); color: var(--black); }
+    .plan-opt-name { font-size: 14px; font-weight: 700; }
+    .plan-opt-price { font-family: var(--ff-mono); font-size: 14px; font-weight: 700; }
+    .plan-opt-badge {
+      font-family: var(--ff-mono); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; background: var(--black); color: var(--white);
+      padding: 2px 8px; border-radius: 100px;
+    }
+
+    .wa-cta-btn {
+      width: 100%; padding: 18px; background: #25D366; color: #fff;
+      font-size: 16px; font-weight: 700; border: none; border-radius: var(--r);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      gap: 10px; transition: var(--tr);
+    }
+    .wa-cta-btn:hover { background: #20bd5a; box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
+    .wa-icon { font-size: 20px; }
+    .modal-note { margin-top: 16px; font-size: 12px; color: var(--gray-600); text-align: center; line-height: 1.5; }
+
+    /* ─── SCROLL FADE ─────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-up.vis { opacity: 1; transform: none; }
+
+    /* ─── WHATSAPP FLOAT ──────────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 500;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      cursor: pointer; transition: var(--tr); text-decoration: none;
+      animation: waIn 0.5s 2s ease both;
+    }
+    @keyframes waIn { from { opacity:0; transform:scale(0.6); } }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════ -->
+<nav id="mainNav">
+  <div class="container">
+    <div class="nav-logo">
+      <img src="1776637745765_ECO101.png" alt="ECO-101" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'">
+      <span class="nav-logo-text" style="display:none">ECO-101</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#problem">Why It Works</a></li>
+      <li><a href="#how">Process</a></li>
+      <li><a href="#features">What You Get</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:+212770877821" class="nav-phone">
+        📞 +212 770 877 821
+      </a>
+      <button class="btn btn-primary" style="padding:11px 24px;font-size:13px" onclick="openModal()">Join Now →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Left -->
+      <div class="hero-left">
+        <div class="hero-live">
+          <span class="live-dot"></span>
+          NOW ENROLLING — LIMITED SPOTS
+        </div>
+        <h1 class="h1 hero-title">
+          <span class="line-white">GET YOUR</span>
+          <span class="line-white">FIRST SALE</span>
+          <span class="line-outline">IN DAYS</span>
+        </h1>
+        <p class="hero-sub">
+          Remove the confusion. Follow a proven roadmap. Join 1,400+ ecommerce builders who got their first sale in under a week.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="openModal()">Join ECO-101 →</button>
+          <a href="https://wa.me/212770877821" target="_blank" class="btn btn-wa btn-lg">
+            <span>💬</span> WhatsApp Us
+          </a>
+        </div>
+        <div class="hero-proof">
+          <div class="avatars">
+            <span>👤</span><span>👤</span><span>👤</span><span>👤</span><span>👤</span>
+          </div>
+          <div class="proof-text">
+            <strong>1,400+ members</strong> already inside<br>
+            Avg. first sale in 6.2 days
+          </div>
+        </div>
+      </div>
+
+      <!-- Right card -->
+      <div>
+        <div class="hero-card">
+          <div class="stats-2x2">
+            <div class="stat-box">
+              <div class="stat-num">1.4K</div>
+              <div class="stat-lbl">Active Members</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">6.2</div>
+              <div class="stat-lbl">Days to First Sale</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">94%</div>
+              <div class="stat-lbl">Success Rate</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">$29</div>
+              <div class="stat-lbl">Starting From</div>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <span class="badge-icon">🏆</span>
+            <div class="badge-text">
+              <strong>7-Day First Sale Challenge</strong>
+              A day-by-day roadmap to your first notification
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══════════════════════════════════════ -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <div class="m-item"><span class="bul">●</span> FIRST SALE IN 4 DAYS</div>
+    <div class="m-item"><span class="bul">●</span> TIKTOK ADS MASTERY</div>
+    <div class="m-item"><span class="bul">●</span> WINNING PRODUCTS DAILY</div>
+    <div class="m-item"><span class="bul">●</span> DISCORD COMMUNITY</div>
+    <div class="m-item"><span class="bul">●</span> COACHING CALLS</div>
+    <div class="m-item"><span class="bul">●</span> PROVEN SYSTEM</div>
+    <div class="m-item"><span class="bul">●</span> MOROCCAN & GLOBAL</div>
+    <div class="m-item"><span class="bul">●</span> FIRST SALE IN 4 DAYS</div>
+    <div class="m-item"><span class="bul">●</span> TIKTOK ADS MASTERY</div>
+    <div class="m-item"><span class="bul">●</span> WINNING PRODUCTS DAILY</div>
+    <div class="m-item"><span class="bul">●</span> DISCORD COMMUNITY</div>
+    <div class="m-item"><span class="bul">●</span> COACHING CALLS</div>
+    <div class="m-item"><span class="bul">●</span> PROVEN SYSTEM</div>
+    <div class="m-item"><span class="bul">●</span> MOROCCAN & GLOBAL</div>
+  </div>
+</div>
+
+<!-- ═══ PROBLEM ═══════════════════════════════════════ -->
+<section id="problem" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag"><span class="tag-dot"></span>The Problem</div>
+      <h2 class="h2">WHY MOST<br>BEGINNERS <span style="color:var(--gray-600)">FAIL</span></h2>
+      <p style="font-size:18px;color:var(--gray-400);max-width:520px;margin-top:16px;line-height:1.7">
+        It's not your fault. The ecommerce world is flooded with noise, fake gurus, and zero clarity.
+      </p>
+    </div>
+    <div class="prob-grid fade-up" style="transition-delay:0.1s">
+      <div class="prob-cell">
+        <div class="prob-x">✗</div>
+        <span class="prob-icon">🌊</span>
+        <h3>Information Overload</h3>
+        <p>Hundreds of YouTube videos and gurus pulling you in every direction. No clear starting point.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-x">✗</div>
+        <span class="prob-icon">🧭</span>
+        <h3>No Clear Guidance</h3>
+        <p>Generic advice that doesn't match your budget or situation. You need a real roadmap, not theory.</p>
+      </div>
+      <div class="prob-cell">
+        <div class="prob-x">✗</div>
+        <span class="prob-icon">🔍</span>
+        <h3>No Winning Products</h3>
+        <p>Days spent searching with no idea what actually sells. Wasting money testing the wrong items.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ══════════════════════════════════════ -->
+<section id="solution" class="section section-alt">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag"><span class="tag-dot"></span>The Solution</div>
+      <h2 class="h2">ECO-101<br><span style="color:var(--gray-400)">CHANGES</span> THAT</h2>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-feat-list fade-up" style="transition-delay:0.05s">
+        <div class="sol-item">
+          <div class="sol-num">01</div>
+          <div>
+            <h4>Step-by-Step System</h4>
+            <p>Follow a proven framework from day one. No guesswork — just clear daily actions that lead to your first sale.</p>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-num">02</div>
+          <div>
+            <h4>Community Support</h4>
+            <p>Private Discord with 1,400+ active members. Get feedback, share wins, and never feel alone again.</p>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-num">03</div>
+          <div>
+            <h4>Proven Methods Only</h4>
+            <p>No theoretical fluff. Every strategy is tested and verified by real members who got results.</p>
+          </div>
+        </div>
+        <div class="sol-item">
+          <div class="sol-num">04</div>
+          <div>
+            <h4>Winning Products Delivered</h4>
+            <p>Stop searching blindly. Get curated winning product picks shared daily inside the community.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sol-visual fade-up" style="transition-delay:0.15s">
+        <div class="sol-big">94%</div>
+        <div class="sol-sub">of members make their first sale within 2 weeks</div>
+        <div class="bar-group">
+          <div class="bar-row">
+            <span class="bar-label">Week 1</span>
+            <div class="bar-track"><div class="bar-fill" style="width:68%"></div></div>
+            <span class="bar-pct">68%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Week 2</span>
+            <div class="bar-track"><div class="bar-fill" style="width:26%"></div></div>
+            <span class="bar-pct">26%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Month 2</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+            <span class="bar-pct">6%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ══════════════════════════════════ -->
+<section id="how" class="section">
+  <div class="container">
+    <div class="fade-up" style="text-align:center">
+      <div class="tag"><span class="tag-dot"></span>Process</div>
+      <h2 class="h2">HOW IT WORKS</h2>
+      <p style="font-size:17px;color:var(--gray-400);margin-top:16px">4 steps from zero to your first profitable sale.</p>
+    </div>
+    <div class="steps-grid fade-up" style="transition-delay:0.1s">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3>Find Winning Products</h3>
+        <p>Use our curated product database and research method to find items with proven demand.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3>Build Your Store</h3>
+        <p>Use our store templates and checklist. Launch a high-converting Shopify store in hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3>Launch Ads</h3>
+        <p>Run TikTok or Meta ads using our tested creatives and targeting strategies.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <h3>Get First Sale</h3>
+        <p>Watch notifications roll in. Optimize and scale what's working.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT YOU GET ══════════════════════════════════ -->
+<section id="features" class="section section-alt">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag"><span class="tag-dot"></span>Included</div>
+      <h2 class="h2">WHAT YOU GET</h2>
+      <p style="font-size:17px;color:var(--gray-400);max-width:500px;margin-top:16px;line-height:1.7">
+        Everything you need to launch and grow — in one community.
+      </p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card fade-up">
+        <div class="feat-icon">💬</div>
+        <h3>Private Discord</h3>
+        <p>Exclusive members-only Discord. Get feedback, share wins, and learn from 1,400+ peers daily.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.06s">
+        <div class="feat-icon">🏆</div>
+        <h3>Daily Winning Products</h3>
+        <p>New product picks shared daily. High-demand, low-competition products you can start selling now.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.12s">
+        <div class="feat-icon">📐</div>
+        <h3>Store Templates</h3>
+        <p>Copy our proven Shopify store layouts that convert visitors into buyers. No design skills needed.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.18s">
+        <div class="feat-icon">📞</div>
+        <h3>Coaching Calls</h3>
+        <p>Weekly live Q&A. Get your store reviewed and receive personalized advice from real sellers.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.24s">
+        <div class="feat-icon">📚</div>
+        <h3>Resource Library</h3>
+        <p>Ad scripts, email templates, and supplier contacts — all organized and ready to use.</p>
+      </div>
+      <div class="feat-card fade-up" style="transition-delay:0.30s">
+        <div class="feat-icon">⚡</div>
+        <h3>7-Day Challenge</h3>
+        <p>A day-by-day action plan engineered to get your first sale within your first week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7-DAY CHALLENGE ═══════════════════════════════ -->
+<section id="challenge" class="section">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag"><span class="tag-dot"></span>7-Day Challenge</div>
+      <h2 class="h2">YOUR FIRST WEEK</h2>
+    </div>
+    <div class="challenge-grid">
+      <div class="chal-info fade-up">
+        <h3>DAY BY DAY PLAN</h3>
+        <p>Every day has one clear mission. No confusion, no wasted time. Execute and get results.</p>
+        <button class="btn btn-primary btn-lg" onclick="openModal()">Start the Challenge →</button>
+        <div style="margin-top:20px">
+          <a href="https://wa.me/212770877821?text=Hi%2C%20I%20want%20to%20join%20ECO-101%20and%20start%20the%207-Day%20Challenge" 
+             target="_blank" class="btn btn-wa" style="width:100%;margin-top:0">
+            <span class="wa-icon">💬</span> Ask on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="days-stack fade-up" style="transition-delay:0.1s">
+        <div class="day-card"><div class="day-tag">DAY 1</div><div><div class="day-title">Niche & Product Research</div><div class="day-desc">Find 3 winning product candidates using our framework</div></div></div>
+        <div class="day-card"><div class="day-tag">DAY 2</div><div><div class="day-title">Store Setup</div><div class="day-desc">Build your Shopify store using our template — live by end of day</div></div></div>
+        <div class="day-card"><div class="day-tag">DAY 3</div><div><div class="day-title">Content & Creative</div><div class="day-desc">Create your first TikTok ad creative or source UGC content</div></div></div>
+        <div class="day-card"><div class="day-tag">DAY 4</div><div><div class="day-title">Ad Account Setup</div><div class="day-desc">Configure TikTok Ads or Meta Ads. Set up pixel tracking.</div></div></div>
+        <div class="day-card"><div class="day-tag">DAY 5</div><div><div class="day-title">Launch First Campaign</div><div class="day-desc">Go live with a small test budget ($10–20). Monitor results.</div></div></div>
+        <div class="day-card"><div class="day-tag">DAY 6</div><div><div class="day-title">Analyze & Optimize</div><div class="day-desc">Kill losing ads. Double down on what's working.</div></div></div>
+        <div class="day-card" style="border-color:var(--border-hi)"><div class="day-tag" style="color:var(--white)">DAY 7</div><div><div class="day-title">🎯 First Sale Day</div><div class="day-desc">Scale your winning campaign. Celebrate your first notification.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ══════════════════════════════════ -->
+<section id="testimonials" class="section section-alt">
+  <div class="container">
+    <div class="fade-up" style="text-align:center">
+      <div class="tag"><span class="tag-dot"></span>Results</div>
+      <h2 class="h2">REAL PEOPLE,<br>REAL SALES</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"I had been trying ecommerce for 8 months with zero sales. Joined ECO-101 on Monday, got my first sale on Thursday. The 7-day challenge is insane."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Marcus T.</div><div class="testi-result">First sale in 4 days · $847 Month 2</div></div></div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.08s">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"The daily product picks alone are worth every penny. I've tried tools that cost 10× more — ECO-101's community is better. Crazy value."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Priya S.</div><div class="testi-result">$2,100 in first month · Still scaling</div></div></div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.16s">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Complete beginner. No tech skills, zero experience. The templates made it doable. First $1K day in week 3. Never looked back."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Jordan K.</div><div class="testi-result">$1,000 day in 3 weeks · 0 to hero</div></div></div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Weekly coaching calls changed everything. Got my store reviewed live and my conversion rate tripled overnight. This community is real."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Aisha M.</div><div class="testi-result">CVR ×3 · $4K/month</div></div></div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.08s">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"I spent $2,000 on courses before this and learned less than I did in my first week inside ECO-101. This community is the real deal."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Liam W.</div><div class="testi-result">Quit 9-5 · $8K/month now</div></div></div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.16s">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"The resource library has everything — supplier contacts, ad scripts, email flows. I just copy, customize, and launch. Cheat code for dropshipping."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Sofia R.</div><div class="testi-result">First sale day 6 · $3.2K/month</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ════════════════════════════════════════ -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="fade-up pricing-header">
+      <div class="tag"><span class="tag-dot"></span>Pricing</div>
+      <h2 class="h2">CHOOSE YOUR PLAN</h2>
+      <p class="pricing-sub">The longer you commit, the more you save. Same full access on every plan.</p>
+    </div>
+
+    <div class="pricing-grid fade-up" style="transition-delay:0.1s">
+
+      <!-- PLAN 1 — 1 Month -->
+      <div class="p-card">
+        <div class="p-name">Starter</div>
+        <div class="p-price"><sup>$</sup>29</div>
+        <div class="p-period">1 month · cancel anytime</div>
+        <ul class="p-features">
+          <li><span class="p-check">✓</span> Private Discord Access</li>
+          <li><span class="p-check">✓</span> Daily Winning Products</li>
+          <li><span class="p-check">✓</span> Store Templates</li>
+          <li><span class="p-check">✓</span> 7-Day First Sale Challenge</li>
+          <li><span class="p-check">✓</span> Resource Library</li>
+          <li><span class="p-check">✓</span> Coaching Calls</li>
+        </ul>
+        <button class="p-btn p-btn-default" onclick="openModalWithPlan('1month')">
+          Get Started →
+        </button>
+      </div>
+
+      <!-- PLAN 2 — 2 Months POPULAR -->
+      <div class="p-card popular">
+        <div class="pop-badge">MOST POPULAR</div>
+        <div class="p-name">Best Value</div>
+        <div class="p-price"><sup>$</sup>55</div>
+        <div class="p-period">2 months · save $3 vs monthly</div>
+        <ul class="p-features">
+          <li><span class="p-check">✓</span> Private Discord Access</li>
+          <li><span class="p-check">✓</span> Daily Winning Products</li>
+          <li><span class="p-check">✓</span> Store Templates</li>
+          <li><span class="p-check">✓</span> 7-Day First Sale Challenge</li>
+          <li><span class="p-check">✓</span> Resource Library</li>
+          <li><span class="p-check">✓</span> Coaching Calls</li>
+        </ul>
+        <button class="p-btn p-btn-popular" onclick="openModalWithPlan('2months')">
+          💬 Join Now — $55 →
+        </button>
+      </div>
+
+      <!-- PLAN 3 — 3 Months -->
+      <div class="p-card">
+        <div class="p-name">Pro</div>
+        <div class="p-price"><sup>$</sup>80</div>
+        <div class="p-period">3 months · save $7 vs monthly</div>
+        <ul class="p-features">
+          <li><span class="p-check">✓</span> Private Discord Access</li>
+          <li><span class="p-check">✓</span> Daily Winning Products</li>
+          <li><span class="p-check">✓</span> Store Templates</li>
+          <li><span class="p-check">✓</span> 7-Day First Sale Challenge</li>
+          <li><span class="p-check">✓</span> Resource Library</li>
+          <li><span class="p-check">✓</span> Coaching Calls</li>
+        </ul>
+        <button class="p-btn p-btn-default" onclick="openModalWithPlan('3months')">
+          Get 3 Months →
+        </button>
+      </div>
+
+    </div>
+
+    <div class="p-urgency">🔥 Only 12 spots remaining this month</div>
+    <div class="p-guarantee">🛡️ 7-day money-back guarantee on all plans · No questions asked</div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════ -->
+<section id="faq" class="section section-alt">
+  <div class="container">
+    <div class="fade-up" style="text-align:center">
+      <div class="tag"><span class="tag-dot"></span>FAQ</div>
+      <h2 class="h2">GOT QUESTIONS?</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item fade-up">
+        <button class="faq-q">Is this beginner friendly? <span class="faq-arrow">+</span></button>
+        <div class="faq-a"><p>100%. ECO-101 was built specifically for complete beginners. You need zero ecommerce experience, zero tech skills. Everything is explained step by step from scratch.</p></div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q">What budget do I need to start? <span class="faq-arrow">+</span></button>
+        <div class="faq-a"><p>You can start with as little as $10–20 for your first test ads. Many members started with under $100 total. We teach you how to stretch your budget and find free traffic strategies too.</p></div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q">How fast can I realistically see results? <span class="faq-arrow">+</span></button>
+        <div class="faq-a"><p>68% of members make their first sale within the first week following the 7-Day Challenge. Results vary depending on effort, budget, and product — but you have a proven system and a community behind you.</p></div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q">How do I pay? <span class="faq-arrow">+</span></button>
+        <div class="faq-a"><p>Simply contact us on WhatsApp at <strong style="color:var(--white)">0770 877 821</strong> and we'll guide you through the payment process and give you immediate access. Fast, simple, and personal.</p></div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q">Can I cancel anytime? <span class="faq-arrow">+</span></button>
+        <div class="faq-a"><p>Yes. No long-term contracts, no cancellation fees. We keep you because of value, not contracts. Just message us on WhatsApp to manage your subscription.</p></div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q">Which plan should I choose? <span class="faq-arrow">+</span></button>
+        <div class="faq-a"><p>Most members choose the 2-Month plan ($55) — it gives you enough time to get your first sale AND start scaling, at the best price per month. If you're serious about results, the 3-Month plan ($80) is the best value overall.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══════════════════════════════════════ -->
+<section id="final-cta">
+  <div class="container">
+    <div class="fade-up">
+      <h2 class="h2 cta-h">READY FOR<br>YOUR FIRST SALE?</h2>
+      <p class="cta-sub">Join 1,400+ members already building their ecommerce businesses. Your first sale is 7 days away.</p>
+      <div class="cta-btns">
+        <button class="btn btn-primary btn-xl" onclick="openModal()">Join ECO-101 →</button>
+        <a href="https://wa.me/212770877821?text=Hi%2C%20I%20want%20to%20join%20ECO-101!" target="_blank" class="btn btn-wa btn-xl">
+          <span class="wa-icon">💬</span> WhatsApp Now
+        </a>
+      </div>
+      <p style="margin-top:24px;font-size:13px;color:var(--gray-600)">
+        🛡️ 7-day guarantee · Cancel anytime · Contact: <a href="tel:+212770877821" style="color:var(--gray-400)">0770 877 821</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="1776637745765_ECO101.png" alt="ECO-101" style="height:22px;filter:invert(1)"
+             onerror="this.style.display='none'">
+        <span style="font-family:var(--ff-head);font-size:20px;font-weight:900;color:var(--gray-600)">ECO-101</span>
+      </div>
+      <div class="footer-copy">© 2025 ECO-101. All rights reserved.</div>
+      <a href="tel:+212770877821" class="footer-phone">📞 0770 877 821</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ WHATSAPP FLOAT BUTTON ═══════════════════════════ -->
+<a href="https://wa.me/212770877821?text=Hi%2C%20I%27m%20interested%20in%20joining%20ECO-101!" 
+   target="_blank" class="wa-float" title="Chat on WhatsApp">
+  💬
+</a>
+
+<!-- ═══ CONTACT/JOIN MODAL ══════════════════════════════ -->
+<div class="modal-overlay" id="joinModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-logo">
+      <img src="1776637745765_ECO101.png" alt="ECO-101" style="height:28px;filter:invert(1)"
+           onerror="this.style.display='none'">
+    </div>
+
+    <h2 class="modal-title">JOIN ECO-101</h2>
+    <p class="modal-sub">Choose your plan and contact us on WhatsApp for instant access.</p>
+
+    <!-- Plan selector -->
+    <div class="plan-select" id="planSelect">
+      <div class="plan-opt" id="opt-1month" onclick="selectPlan('1month')">
+        <div>
+          <div class="plan-opt-name">Starter — 1 Month</div>
+        </div>
+        <div class="plan-opt-price">$29</div>
+      </div>
+      <div class="plan-opt popular-opt" id="opt-2months" onclick="selectPlan('2months')">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="plan-opt-name">Best Value — 2 Months</div>
+          <span class="plan-opt-badge">POPULAR</span>
+        </div>
+        <div class="plan-opt-price">$55</div>
+      </div>
+      <div class="plan-opt" id="opt-3months" onclick="selectPlan('3months')">
+        <div>
+          <div class="plan-opt-name">Pro — 3 Months</div>
+        </div>
+        <div class="plan-opt-price">$80</div>
+      </div>
+    </div>
+
+    <button class="wa-cta-btn" id="waCta" onclick="handleWhatsApp()">
+      <span class="wa-icon">💬</span>
+      Contact Us on WhatsApp
+    </button>
+
+    <div class="modal-note">
+      We'll respond within minutes and give you instant access.<br>
+      📞 <strong style="color:var(--gray-200)">0770 877 821</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCRIPTS ══════════════════════════════════════════ -->
+<script>
+  /* NAV scroll */
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* Scroll fade-in */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!open) item.classList.add('open');
+    });
+  });
+
+  /* Modal */
+  let selectedPlan = '2months'; // default to popular
+
+  function openModal() {
+    document.getElementById('joinModal').classList.add('open');
+    highlightPlan(selectedPlan);
+  }
+
+  function openModalWithPlan(plan) {
+    selectedPlan = plan;
+    document.getElementById('joinModal').classList.add('open');
+    highlightPlan(plan);
+  }
+
+  function closeModal() {
+    document.getElementById('joinModal').classList.remove('open');
+  }
+
+  document.getElementById('joinModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function selectPlan(plan) {
+    selectedPlan = plan;
+    highlightPlan(plan);
+  }
+
+  function highlightPlan(plan) {
+    const plans   = { '1month': 29, '2months': 55, '3months': 80 };
+    const labels  = { '1month': 'Starter (1 Month)', '2months': 'Best Value (2 Months)', '3months': 'Pro (3 Months)' };
+    const popular = { '1month': false, '2months': true, '3months': false };
+
+    // Reset all
+    ['1month','2months','3months'].forEach(p => {
+      const el = document.getElementById('opt-' + p);
+      el.classList.remove('selected');
+      if (popular[p]) {
+        el.classList.add('popular-opt');
+        el.style.borderColor = '';
+      } else {
+        el.classList.remove('popular-opt');
+      }
+    });
+
+    // Highlight selected
+    const sel = document.getElementById('opt-' + plan);
+    if (popular[plan]) {
+      sel.classList.add('popular-opt');
+    } else {
+      sel.classList.add('selected');
+    }
+
+    // Update CTA button
+    const btn = document.getElementById('waCta');
+    btn.innerHTML = `<span class="wa-icon">💬</span> Join ${labels[plan]} — $${plans[plan]}`;
+  }
+
+  function handleWhatsApp() {
+    const labels = { '1month': 'Starter - 1 Month ($29)', '2months': 'Best Value - 2 Months ($55)', '3months': 'Pro - 3 Months ($80)' };
+    const msg = encodeURIComponent(
+      `Hi! I want to join ECO-101.\nPlan: ${labels[selectedPlan]}\nPlease guide me through the next steps.`
+    );
+    window.open(`https://wa.me/212770877821?text=${msg}`, '_blank');
+  }
+
+  // Init with popular plan highlighted
+  highlightPlan('2months');
+</script>
+</body>
+</html>
