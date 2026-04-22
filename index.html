@@ -166,6 +166,7 @@
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+      pointer-events: none;
     }
     .hero-inner {
       display: grid; grid-template-columns: 1fr 480px;
@@ -196,7 +197,8 @@
       font-size: 18px; color: var(--gray-400); max-width: 460px;
       margin-bottom: 40px; line-height: 1.75;
     }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; position: relative; z-index: 10; }
+    .hero-left { position: relative; z-index: 10; }
 
     .hero-proof { display: flex; align-items: center; gap: 14px; }
     .avatars { display: flex; }
@@ -428,6 +430,8 @@
     .testi-result { font-size: 11px; color: var(--gray-400); font-family: var(--ff-mono); margin-top: 2px; }
     @media(max-width:900px){ .testi-grid { grid-template-columns: 1fr 1fr; } }
     @media(max-width:560px){ .testi-grid { grid-template-columns: 1fr; } }
+    .testi-grid > .testi-card[style*="grid-column"] { grid-column: 1 / -1; }
+    @media(max-width:560px){ .testi-grid > .testi-card[style*="grid-column"] { max-width: 100% !important; } }
 
     /* ─── PRICING ─────────────────────────────────────── */
     .pricing-header { text-align: center; margin-bottom: 16px; }
@@ -622,7 +626,7 @@
       gap: 10px; transition: var(--tr);
     }
     .wa-cta-btn:hover { background: #20bd5a; box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
-    .wa-icon { font-size: 20px; }
+    .wa-icon { font-size: 20px; display:inline-flex;align-items:center; }
     .modal-note { margin-top: 16px; font-size: 12px; color: var(--gray-600); text-align: center; line-height: 1.5; }
 
     /* ─── SCROLL FADE ─────────────────────────────────── */
@@ -662,8 +666,8 @@
       <li><a href="#pricing">Pricing</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="tel:+212770877821" class="nav-phone">
-        📞 +212 770 877 821
+      <a href="tel:+212699126239" class="nav-phone">
+        📞 +212 699-126239
       </a>
       <button class="btn btn-primary" style="padding:11px 24px;font-size:13px" onclick="openModal()">Join Now →</button>
     </div>
@@ -691,8 +695,8 @@
         </p>
         <div class="hero-actions">
           <button class="btn btn-primary btn-lg" onclick="openModal()">Join ECO-101 →</button>
-          <a href="https://wa.me/212770877821" target="_blank" class="btn btn-wa btn-lg">
-            <span>💬</span> WhatsApp Us
+          <a href="https://wa.me/212699126239?text=Hi%2C%20I%27m%20interested%20in%20joining%20ECO-101!" target="_blank" class="btn btn-wa btn-lg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp Us
           </a>
         </div>
         <div class="hero-proof">
@@ -948,9 +952,9 @@
         <p>Every day has one clear mission. No confusion, no wasted time. Execute and get results.</p>
         <button class="btn btn-primary btn-lg" onclick="openModal()">Start the Challenge →</button>
         <div style="margin-top:20px">
-          <a href="https://wa.me/212770877821?text=Hi%2C%20I%20want%20to%20join%20ECO-101%20and%20start%20the%207-Day%20Challenge" 
+          <a href="https://wa.me/212699126239?text=Hi%2C%20I%20want%20to%20join%20ECO-101%20and%20start%20the%207-Day%20Challenge" 
              target="_blank" class="btn btn-wa" style="width:100%;margin-top:0">
-            <span class="wa-icon">💬</span> Ask on WhatsApp
+            <span class="wa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span> Ask on WhatsApp
           </a>
         </div>
       </div>
@@ -977,33 +981,47 @@
     <div class="testi-grid">
       <div class="testi-card fade-up">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"I had been trying ecommerce for 8 months with zero sales. Joined ECO-101 on Monday, got my first sale on Thursday. The 7-day challenge is insane."</p>
-        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Marcus T.</div><div class="testi-result">First sale in 4 days · $847 Month 2</div></div></div>
+        <p class="testi-text">"Kont kanprobbar ecommerce 8 shhor bla ay bay3a. Dkhal ECO-101 wa fi 4 ayam 3andi awl vente. Le 7-day challenge howa li ghayer liya lhaja."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Youssef B.</div><div class="testi-result">Première vente en 4 jours · +8,000 MAD/mois</div></div></div>
       </div>
       <div class="testi-card fade-up" style="transition-delay:0.08s">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"The daily product picks alone are worth every penny. I've tried tools that cost 10× more — ECO-101's community is better. Crazy value."</p>
-        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Priya S.</div><div class="testi-result">$2,100 in first month · Still scaling</div></div></div>
+        <p class="testi-text">"Les produits gagnants li kay3tawhom kol yom wahdha kifaya. Jrbt tools bghal 10x — community ECO-101 hiya lfdal. Valeur mzyana bzzaf."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Salma E.</div><div class="testi-result">19,000 MAD f awl shhar · Kayzid mazal</div></div></div>
       </div>
       <div class="testi-card fade-up" style="transition-delay:0.16s">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"Complete beginner. No tech skills, zero experience. The templates made it doable. First $1K day in week 3. Never looked back."</p>
-        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Jordan K.</div><div class="testi-result">$1,000 day in 3 weeks · 0 to hero</div></div></div>
+        <p class="testi-text">"Kont mbdi7 kaml bla khbra. Les templates sawwlha sahla. Awl nhar 9,000 MAD f simana 3. Ma rjat3sh lura."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Hamza L.</div><div class="testi-result">9,000 MAD f nhar wa7d · min sifr l professionnel</div></div></div>
       </div>
       <div class="testi-card fade-up">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"Weekly coaching calls changed everything. Got my store reviewed live and my conversion rate tripled overnight. This community is real."</p>
-        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Aisha M.</div><div class="testi-result">CVR ×3 · $4K/month</div></div></div>
+        <p class="testi-text">"Les coaching calls sbou3ia ghayraw liya kol shiy. Reviewiw liya store dyali live wa conversion rate tlt7. Had community haqiqi."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Nadia R.</div><div class="testi-result">CVR ×3 · 40,000 MAD/shhar</div></div></div>
       </div>
       <div class="testi-card fade-up" style="transition-delay:0.08s">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"I spent $2,000 on courses before this and learned less than I did in my first week inside ECO-101. This community is the real deal."</p>
-        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Liam W.</div><div class="testi-result">Quit 9-5 · $8K/month now</div></div></div>
+        <p class="testi-text">"Serfet flous bzaf 3la courses qbl ECO-101 wa tqalamt aqal. F awl simana f ECO-101 tqalamt aktar mn ay shiy. Hadi hiya l7aqa."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Amine T.</div><div class="testi-result">Sifet rasmi · 80,000 MAD/shhar daba</div></div></div>
       </div>
       <div class="testi-card fade-up" style="transition-delay:0.16s">
         <div class="stars">★★★★★</div>
-        <p class="testi-text">"The resource library has everything — supplier contacts, ad scripts, email flows. I just copy, customize, and launch. Cheat code for dropshipping."</p>
-        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Sofia R.</div><div class="testi-result">First sale day 6 · $3.2K/month</div></div></div>
+        <p class="testi-text">"La resource library 3andha kol shiy — fournisseurs, scripts pub, email flows. Kancopyi, kancustomizi, kanlaunch. Cheat code dyal dropshipping."</p>
+        <div class="testi-author"><div class="testi-av">👤</div><div><div class="testi-name">Fatima Z.</div><div class="testi-result">Awl bay3a f yom 6 · 30,000 MAD/shhar</div></div></div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:0.24s; border-color: rgba(255,255,255,0.25); grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <span style="font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.12em;color:#25D366;background:rgba(37,211,102,0.1);padding:4px 10px;border-radius:100px;border:1px solid rgba(37,211,102,0.25)">🇲🇦 MAROC</span>
+          <div class="stars" style="margin-bottom:0">★★★★★</div>
+        </div>
+        <p class="testi-text" style="font-size:16px;color:var(--white)">"Wallah, ma croyais pas que ça allait marcher aussi vite. J'ai rejoint ECO-101 et en exactement 6 jours, j'ai eu ma première vente. Le système est clair, la communauté répond vite, et les produits gagnants sont chaque jour dans le Discord. Pour quelqu'un qui commence au Maroc — c'est la meilleure chose que j'ai faite."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:rgba(37,211,102,0.15);border:2px solid rgba(37,211,102,0.4)">🧑</div>
+          <div>
+            <div class="testi-name">Abderrahman M. <span style="color:var(--gray-600);font-weight:400">— Casablanca, Maroc</span></div>
+            <div class="testi-result">🔥 Première vente en 6 jours · ECO-101 member</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1053,7 +1071,7 @@
           <li><span class="p-check">✓</span> Coaching Calls</li>
         </ul>
         <button class="p-btn p-btn-popular" onclick="openModalWithPlan('2months')">
-          💬 Join Now — $55 →
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join Now — $55 →
         </button>
       </div>
 
@@ -1104,7 +1122,7 @@
       </div>
       <div class="faq-item fade-up">
         <button class="faq-q">How do I pay? <span class="faq-arrow">+</span></button>
-        <div class="faq-a"><p>Simply contact us on WhatsApp at <strong style="color:var(--white)">0770 877 821</strong> and we'll guide you through the payment process and give you immediate access. Fast, simple, and personal.</p></div>
+        <div class="faq-a"><p>Simply contact us on WhatsApp at <strong style="color:var(--white)">+212 699-126239</strong> and we'll guide you through the payment process and give you immediate access. Fast, simple, and personal.</p></div>
       </div>
       <div class="faq-item fade-up">
         <button class="faq-q">Can I cancel anytime? <span class="faq-arrow">+</span></button>
@@ -1126,12 +1144,12 @@
       <p class="cta-sub">Join 1,400+ members already building their ecommerce businesses. Your first sale is 7 days away.</p>
       <div class="cta-btns">
         <button class="btn btn-primary btn-xl" onclick="openModal()">Join ECO-101 →</button>
-        <a href="https://wa.me/212770877821?text=Hi%2C%20I%20want%20to%20join%20ECO-101!" target="_blank" class="btn btn-wa btn-xl">
-          <span class="wa-icon">💬</span> WhatsApp Now
+        <a href="https://wa.me/212699126239?text=Hi%2C%20I%20want%20to%20join%20ECO-101!" target="_blank" class="btn btn-wa btn-xl">
+          <span class="wa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span> WhatsApp Now
         </a>
       </div>
       <p style="margin-top:24px;font-size:13px;color:var(--gray-600)">
-        🛡️ 7-day guarantee · Cancel anytime · Contact: <a href="tel:+212770877821" style="color:var(--gray-400)">0770 877 821</a>
+        🛡️ 7-day guarantee · Cancel anytime · Contact: <a href="tel:+212699126239" style="color:var(--gray-400)">+212 699-126239</a>
       </p>
     </div>
   </div>
@@ -1147,15 +1165,15 @@
         <span style="font-family:var(--ff-head);font-size:20px;font-weight:900;color:var(--gray-600)">ECO-101</span>
       </div>
       <div class="footer-copy">© 2025 ECO-101. All rights reserved.</div>
-      <a href="tel:+212770877821" class="footer-phone">📞 0770 877 821</a>
+      <a href="tel:+212699126239" class="footer-phone">📞 +212 699-126239</a>
     </div>
   </div>
 </footer>
 
 <!-- ═══ WHATSAPP FLOAT BUTTON ═══════════════════════════ -->
-<a href="https://wa.me/212770877821?text=Hi%2C%20I%27m%20interested%20in%20joining%20ECO-101!" 
+<a href="https://wa.me/212699126239?text=Hi%2C%20I%27m%20interested%20in%20joining%20ECO-101!" 
    target="_blank" class="wa-float" title="Chat on WhatsApp">
-  💬
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <!-- ═══ CONTACT/JOIN MODAL ══════════════════════════════ -->
@@ -1195,13 +1213,13 @@
     </div>
 
     <button class="wa-cta-btn" id="waCta" onclick="handleWhatsApp()">
-      <span class="wa-icon">💬</span>
+      <span class="wa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
       Contact Us on WhatsApp
     </button>
 
     <div class="modal-note">
       We'll respond within minutes and give you instant access.<br>
-      📞 <strong style="color:var(--gray-200)">0770 877 821</strong>
+      📞 <strong style="color:var(--gray-200)">+212 699-126239</strong>
     </div>
   </div>
 </div>
@@ -1283,7 +1301,7 @@
 
     // Update CTA button
     const btn = document.getElementById('waCta');
-    btn.innerHTML = `<span class="wa-icon">💬</span> Join ${labels[plan]} — $${plans[plan]}`;
+    btn.innerHTML = `<span class="wa-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span> Join ${labels[plan]} — $${plans[plan]}`;
   }
 
   function handleWhatsApp() {
@@ -1291,7 +1309,7 @@
     const msg = encodeURIComponent(
       `Hi! I want to join ECO-101.\nPlan: ${labels[selectedPlan]}\nPlease guide me through the next steps.`
     );
-    window.open(`https://wa.me/212770877821?text=${msg}`, '_blank');
+    window.open(`https://wa.me/212699126239?text=${msg}`, '_blank');
   }
 
   // Init with popular plan highlighted
